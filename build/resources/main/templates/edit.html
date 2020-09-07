@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <title> Dark Side of the Rainbow </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <!-- Link to stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+
+<div th:include="layout::header"></div>
+
+<div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}">
+    Operation unsuccessful.
+</div>
+
+<form action="/admin/albums/edit" method="post">
+    <div class="form-group">
+        <label for="title">Album Name</label>
+        <input type="text" class="form-control" id="title" aria-describedby="titleHelp" name="title"
+               placeholder="Enter Album Name" th:value="${title}">
+        <small id="smallTitleHelp" class="form-text text-muted">What is the name of the album?</small>
+    </div>
+
+    <div class="form-group">
+        <label for="artist">Album Artist</label>
+        <input type="text" class="form-control" id="artist" aria-describedby="artistHelp" name="artist"
+               placeholder="Enter Artist Name" th:value="${artist}">
+        <small id="smallArtistHelp" class="form-text text-muted">What is the name of the artist?</small>
+    </div>
+
+    <div class="form-group">
+        <label for="artist">Year of Release</label>
+        <input type="text" class="form-control" id="release" aria-describedby="releaseHelp" name="release"
+               placeholder="Enter Release Year" th:value="${release}">
+        <small id="smallReleaseHelp" class="form-text text-muted">What year was the Album released?</small>
+    </div>
+
+    <div class="form-group">
+        <label for="genre">Album Genre</label>
+        <input type="text" class="form-control" id="genre" aria-describedby="genreHelp" name="genre"
+               placeholder="Enter the Genre of the Album" th:value="${genre}">
+        <small id="smallGenreHelp" class="form-text text-muted">What genre is the album?</small>
+    </div>
+
+    <div class="form-group">
+        <label for="tracks">Track Count</label>
+        <input type="text" class="form-control" id="tracks" aria-describedby="tracksHelp" name="tracks"
+               placeholder="How many tracks are on the album?"  th:value="${tracks}">
+        <small id="smallTracksHelp" class="form-text text-muted">How many tracks are on the album?</small>
+    </div>
+
+    <div class="form-group">
+        <label for="price">Album Price</label>
+        <input type="text" class="form-control" id="price" aria-describedby="priceHelp" name="price"
+               placeholder="How much does the Album cost?"  th:value="${price}">
+        <small id="smallPriceHelp" class="form-text text-muted">How much does the Album cost?</small>
+    </div>
+
+    <input type="hidden" th:value="${ID}" name="ID" />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title> Dark Side of the Rainbow </title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+
+    <!-- Link to stylesheet -->
+    <!-- <link rel="stylesheet" href="css/main.css"> -->
+    <link rel="stylesheet" type="text/css" media="all"
+          href="css/main.css" th:href="@{css/main.css}" />
+
+
+</head>
+
+<body>
+
+<th:block th:fragment="header">
+    <header>
+
+        <!-- Navbar with logo and site name -->
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+            <!-- Logo Source: http://pngimg.com/uploads/rainbow/rainbow_PNG5578.png -->
+            <a class="navbar-brand" href="/">
+
+                <img src="images/rainbow.png" height=60px alt=""/>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a id="title" class="nav-link" href="/">Dark Side of the Rainbow<span class="sr-only">(current)</span></a>
+                    </li>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/contact_us">Contact Us <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li th:if="${#httpServletRequest.remoteUser}" class="nav-item active">
+                        <a class="nav-link" href="/logout">Logout <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li th:unless="${#httpServletRequest.remoteUser}" class="nav-item active">
+                        <a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
+                    </li>
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0" action="/search_album" method="get">
+                    <input name="term" class="form-control mr-sm-2" type="search" placeholder="Search by Title..." aria-label="Search">
+                    <button class="btn btn-success" type="submit">Search by Album Name</button>
+                </form>
+
+                <p>&nbsp;</p>
+
+                <form class="form-inline my-2 my-lg-0" action="/search_artist" method="get">
+                    <input name="term" class="form-control mr-sm-2" type="search" placeholder="Search by Artist..." aria-label="Search">
+                    <button class="btn btn-success" type="submit">Search by Artist</button>
+                </form>
+            </div>
+        </nav>
+
+        <div></div>
+
+        <nav class="navbar navbar-expand navbar-dark bg-dark" >
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item active" >
+                        <a class="nav-link" href="/console">H2 Database <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item active" th:if="${#httpServletRequest.remoteUser}">
+                        <a class="nav-link" href="/admin/albums/view">Admin View <span class="sr-only">(current)</span></a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+    </header>
+</th:block>
+
+
+<th:block th:fragment="footer">
+    <footer>
+        <cite>&copy; 2019 - Dark Side of the Rainbow</cite>
+    </footer>
+</th:block>
+
+</body>
+</html>

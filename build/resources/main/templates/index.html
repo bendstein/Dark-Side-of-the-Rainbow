@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title> Dark Side of the Rainbow </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+
+    <!-- Link to stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+
+<div th:include="layout::header"></div>
+
+<section id="content">
+
+    <div th:if="${success}" class="alert alert-success" role="alert" th:text="${success}">
+
+    </div>
+
+    <h4 th:if="${albums.size() eq 0}">No albums were found.</h4>
+
+    <table th:unless="${albums.size() eq 0}" class="table table-hover table-borderless table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Artist</th>
+            <th scope="col">Release</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Tracks</th>
+            <th scope="col">Price</th>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="album : ${albums}">
+
+            <th scope="row" th:text="${album.ID}"></th>
+            <td th:text="${album.title}"></td>
+            <td th:text="${album.artist}"></td>
+            <td th:text="${album.release}"></td>
+            <td th:text="${album.genre}"></td>
+            <td th:text="${album.tracks}"></td>
+            <td th:text="${album.price}"></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+
+</section>
+
+<div th:include="layout::footer"></div>
+
+</body>
+</html>
